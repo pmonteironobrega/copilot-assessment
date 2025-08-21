@@ -39,8 +39,12 @@ Os prompts foram construídos no modo agent utilizando o modelo GPT-4.1. Todas a
          4. Criar os repositórios para listar e armazenar dados.
          5. Preparar a estrutura para a API de consulta.
       ```
+    Aparentemente não houve clareza na construção do prompt pois apesar do codigo ter sido gerado corretamente não foram adicionadas as dependencias para o funcionamento da API.
+    Deve-se adicionar detalhes mais claros.
+   
      b. Segundo prompt para correção do modelo de dados
      ```text
             Modifique o a classe Store e adicione o atributo location 
             Modifique os endpoints para aceitarem como input o nome da loja e a localizacao      
       ```
+     A construção do prompt acima foi feito com o intutio de modificar o endpoint e realizar as alterações nos services chamados pelo controller. Porem, não houveram informações suficientes no prompt e houveram erros na       geração do codigo.
