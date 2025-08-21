@@ -23,3 +23,4 @@ Todo o desenvolvimento deve ser feito a partir da escrita de prompts utilizando 
 >Em caso de erro: A resposta conterá uma mensagem de erro apropriada que descreva o problema ocorrido durante a recuperação dos dados.
 
 [Prompt Building](PROMPT_BUILDING.md)
+[API DOCS](API_DOCUMENTATION.md)
