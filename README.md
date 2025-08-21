@@ -24,4 +24,33 @@ Todo o desenvolvimento deve ser feito a partir da escrita de prompts utilizando 
 
 <h2>Construção do prompt</h2>
 
-OS prompts foram construídos no modo agent utilizando o modelo GPT-4.1
+Os prompts foram construídos no modo agent utilizando o modelo GPT-4.1. Todas as modificações realizadas pelo agent foram feitos a partir de um projeto spring boot com kotlin e gradle configurado somente com o básico
+
+1. Processo de construção dos prompts
+   a. Prompt inicial
+      ```text
+      Atue como um especialista em kotlin com spring boot.
+      Contexto
+      Preciso construir uma API para buscar itens não disponiveis em determinadas lojas. Esta API deve ter a capacidade de retornar os itens não disponiveis a partir de uma loja ou por multiplas lojas
+      Tarefas
+      Modifique o projeto dado no contexto para que ele esteja preparado pra prover estas informações a partir deste request
+      Configure o projeto para utilizar o mongodb como base de dados. 
+      Crie os documents para insercao e recuperacao dos dados
+      Modelo
+      {  
+        "store": {  
+          "name": "STORE_NAME",  
+          "products": [  
+            {  
+              "name": "PRODUCT_NAME",  
+              "qty": "total_products"  
+            }  
+          ]  
+        }  
+      }
+      Dados de configuracao do mongo
+      URI: <MONGO_URI>
+      Database: rapsystem
+      Crie os repositories para acesso das funções de listar e armazenar dados
+      
+      ```
