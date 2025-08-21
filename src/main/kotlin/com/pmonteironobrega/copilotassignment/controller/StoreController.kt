@@ -21,11 +21,12 @@ class StoreController(private val storeService: StoreService) {
     ): ResponseEntity<Any> {
         val parsedBrand = restaurantBrand?.replace("+", " ")
         val parsedLocation = location?.replace("+", " ")
-        return if (parsedBrand == null && parsedLocation == null) {
-            ResponseEntity.ok(storeService.getAllUnavailableProducts())
+        val result = if (parsedBrand == null && parsedLocation == null) {
+            storeService.getAllUnavailableProducts()
         } else {
-            ResponseEntity.ok(storeService.getUnavailableProductsByStore(parsedBrand, parsedLocation))
+            storeService.getUnavailableProductsByStore(parsedBrand, parsedLocation)
         }
+        return ResponseEntity.ok(result)
     }
 
     @PostMapping("/unavailable-products/multi")
@@ -36,6 +37,22 @@ class StoreController(private val storeService: StoreService) {
                 it.location?.replace("+", " ")
             )
         }
-        return ResponseEntity.ok(storeService.getUnavailableProductsByStores(parsedRequests))
+        val result = storeService.getUnavailableProductsByStores(parsedRequests)
+        return ResponseEntity.ok(result)
     }
+}
+
+@RestControllerAdvice
+class StoreExceptionHandler {
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleIllegalArgument(ex: IllegalArgumentException): ResponseEntity<Map<String, String>> =
+        ResponseEntity.status(400).body(mapOf("error" to (ex.message ?: "Parâmetros inválidos para busca")))
+
+    @ExceptionHandler(NoSuchElementException::class)
+    fun handleNoSuchElement(ex: NoSuchElementException): ResponseEntity<Map<String, String>> =
+        ResponseEntity.status(404).body(mapOf("error" to (ex.message ?: "Store não encontrada")))
+
+    @ExceptionHandler(Exception::class)
+    fun handleGeneric(ex: Exception): ResponseEntity<Map<String, String>> =
+        ResponseEntity.status(500).body(mapOf("error" to (ex.message ?: "Erro interno ao buscar produtos indisponíveis")))
 }
