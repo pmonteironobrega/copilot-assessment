@@ -39,3 +39,8 @@ Os prompts foram construídos no modo agent utilizando o modelo GPT-4.1. Todas a
          4. Criar os repositórios para listar e armazenar dados.
          5. Preparar a estrutura para a API de consulta.
       ```
+     b. Segundo prompt para correção do modelo de dados
+     ```text
+            Modifique o a classe Store e adicione o atributo location 
+            Modifique os endpoints para aceitarem como input o nome da loja e a localizacao      
+      ```
