@@ -1,9 +1,10 @@
 package com.pmonteironobrega.copilotassignment.service
 
-import com.pmonteironobrega.copilotassignment.controller.StoreErrorMessage
+import com.pmonteironobrega.copilotassignment.error.StoreErrorMessage
 import com.pmonteironobrega.copilotassignment.model.Product
 import com.pmonteironobrega.copilotassignment.model.Store
 import com.pmonteironobrega.copilotassignment.repository.StoreRepository
+import com.pmonteironobrega.copilotassignment.responses.LocationResponse
 import org.springframework.stereotype.Service
 
 @Service
@@ -50,7 +51,59 @@ class StoreService(private val storeRepository: StoreRepository) {
         val stores = storeRepository.findAll()
         return stores.associate { "${it.restaurantBrand} - ${it.location}" to it.products.filter { p -> p.qty == 0 } }
     }
+
+    fun getAvailableStores(): Map<String, List<Map<String, Any>>> {
+        val stores = storeRepository.findAllByOrderByRestaurantBrandAsc()
+        if (stores.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val results = stores.map {
+            mapOf(
+                "restaurantBrand" to it.restaurantBrand,
+                "location" to it.location,
+                "products" to it.products
+            )
+        }
+        return mapOf("results" to results)
+    }
+
+    fun getAvailableStoreNames(): Map<String, List<Map<String, String>>> {
+        val stores = storeRepository.findAllByOrderByRestaurantBrandAsc()
+        if (stores.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val results = stores.map {
+            mapOf(
+                "restaurantBrand" to it.restaurantBrand,
+                "location" to it.location
+            )
+        }
+        return mapOf("results" to results)
+    }
+
+    fun getAvailableStoreBrands(): Map<String, List<StoreBrandResponse>> {
+        val stores = storeRepository.findAllByOrderByRestaurantBrandAsc()
+        if (stores.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val results = stores.map { StoreBrandResponse(it.id, it.restaurantBrand) }.distinctBy { it.restaurantBrand }
+        return mapOf("results" to results)
+    }
+
+    fun getAllStoreNames(): Map<String, List<String>> {
+        val stores = storeRepository.findAll()
+        if (stores.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val results = stores.map { it.restaurantBrand }.distinct()
+        return mapOf("results" to results)
+    }
+
+    fun getLocationsByStoreId(storeId: String): Map<String, List<LocationResponse>> {
+        if (storeId.isBlank()) throw IllegalArgumentException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val store = storeRepository.findById(storeId).orElse(null)
+        if (store == null) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val locations = listOf(LocationResponse(store.location))
+        return mapOf("results" to locations)
+    }
 }
 
 // DTO para requisições múltiplas
 data class StoreQueryRequest(val restaurantBrand: String?, val location: String?)
+// DTO para resposta de marcas de loja
+data class StoreBrandResponse(
+    val id: String?,
+    val restaurantBrand: String
+)

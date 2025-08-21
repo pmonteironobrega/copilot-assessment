@@ -1,18 +1,11 @@
 package com.pmonteironobrega.copilotassignment.controller
 
+import com.pmonteironobrega.copilotassignment.error.StoreErrorMessage
 import com.pmonteironobrega.copilotassignment.model.Store
 import com.pmonteironobrega.copilotassignment.service.StoreQueryRequest
 import com.pmonteironobrega.copilotassignment.service.StoreService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
-enum class StoreErrorMessage(val message: String) {
-    INVALID_BRAND("O parâmetro restaurantBrand não pode ser vazio."),
-    INVALID_LOCATION("O parâmetro location não pode ser vazio."),
-    NO_STORE_FOUND("Nenhum registro encontrado"),
-    EMPTY_REQUEST("A lista de stores não pode ser vazia."),
-    INTERNAL_ERROR("Erro interno ao buscar produtos indisponíveis")
-}
 
 @RestController
 @RequestMapping("/stores")
@@ -46,6 +39,24 @@ class StoreController(private val storeService: StoreService) {
             )
         }
         val result = storeService.getUnavailableProductsByStores(parsedRequests)
+        return ResponseEntity.ok(result)
+    }
+
+    @GetMapping("/available-stores")
+    fun getAvailableStoreBrands(): ResponseEntity<Any> {
+        val result = storeService.getAvailableStoreBrands()
+        return ResponseEntity.ok(result)
+    }
+
+    @GetMapping("/available-stores/names")
+    fun getAvailableStoreNames(): ResponseEntity<Any> {
+        val result = storeService.getAvailableStoreNames()
+        return ResponseEntity.ok(result)
+    }
+
+    @GetMapping("/available-stores/location/{storeId}")
+    fun getLocationsByStoreId(@PathVariable storeId: String): ResponseEntity<Any> {
+        val result = storeService.getLocationsByStoreId(storeId)
         return ResponseEntity.ok(result)
     }
 }
