@@ -54,3 +54,12 @@ Os prompts foram construídos no modo agent utilizando o modelo GPT-4.1. Todas a
       Crie os repositories para acesso das funções de listar e armazenar dados
       
       ```
+      Output
+      ```text
+      Para preparar o projeto Kotlin com Spring Boot para prover uma API que retorna itens não disponíveis em lojas, e configurar o MongoDB como base de dados, seguirei estes passos:
+         1. Adicionar dependências do MongoDB no build.gradle.kts.
+         2. Configurar o acesso ao MongoDB em application.properties.
+         3. Criar os documentos (Store e Product) para persistência.
+         4. Criar os repositórios para listar e armazenar dados.
+         5. Preparar a estrutura para a API de consulta.
+      ```
