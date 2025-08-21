@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service
 class StoreService(private val storeRepository: StoreRepository) {
     fun saveStore(store: Store): Store = storeRepository.save(store)
 
-    fun getUnavailableProductsByStore(name: String?, location: String?): List<Product> {
+    fun getUnavailableProductsByStore(restaurantBrand: String?, location: String?): List<Product> {
         return when {
-            name != null && location != null -> {
-                val store = storeRepository.findByNameAndLocation(name, location)
+            restaurantBrand != null && location != null -> {
+                val store = storeRepository.findByRestaurantBrandAndLocation(restaurantBrand, location)
                 store?.products?.filter { it.qty == 0 } ?: emptyList()
             }
-            name != null -> {
-                val stores = storeRepository.findByName(name)
+            restaurantBrand != null -> {
+                val stores = storeRepository.findByRestaurantBrand(restaurantBrand)
                 stores.flatMap { it.products.filter { p -> p.qty == 0 } }
             }
             location != null -> {
@@ -30,21 +30,21 @@ class StoreService(private val storeRepository: StoreRepository) {
     fun getUnavailableProductsByStores(requests: List<StoreQueryRequest>): Map<String, List<Product>> {
         val result = mutableMapOf<String, List<Product>>()
         requests.forEach { req ->
-            val products = storeQueryFlexible(req.name, req.location)
-            val key = listOfNotNull(req.name, req.location).joinToString(" - ")
+            val products = storeQueryFlexible(req.restaurantBrand, req.location)
+            val key = listOfNotNull(req.restaurantBrand, req.location).joinToString(" - ")
             result[key] = products
         }
         return result
     }
 
-    private fun storeQueryFlexible(name: String?, location: String?): List<Product> {
+    private fun storeQueryFlexible(restaurantBrand: String?, location: String?): List<Product> {
         return when {
-            name != null && location != null -> {
-                val store = storeRepository.findByNameAndLocation(name, location)
+            restaurantBrand != null && location != null -> {
+                val store = storeRepository.findByRestaurantBrandAndLocation(restaurantBrand, location)
                 store?.products?.filter { it.qty == 0 } ?: emptyList()
             }
-            name != null -> {
-                val stores = storeRepository.findByName(name)
+            restaurantBrand != null -> {
+                val stores = storeRepository.findByRestaurantBrand(restaurantBrand)
                 stores.flatMap { it.products.filter { p -> p.qty == 0 } }
             }
             location != null -> {
@@ -62,4 +62,4 @@ class StoreService(private val storeRepository: StoreRepository) {
 }
 
 // DTO para requisições múltiplas
-data class StoreQueryRequest(val name: String?, val location: String?)
+data class StoreQueryRequest(val restaurantBrand: String?, val location: String?)

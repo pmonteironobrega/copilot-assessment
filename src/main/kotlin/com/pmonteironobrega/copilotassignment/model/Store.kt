@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Store(
     @Id
     val id: String? = null,
-    val name: String,
+    val restaurantBrand: String,
     val location: String,
     val products: List<Product>
 )

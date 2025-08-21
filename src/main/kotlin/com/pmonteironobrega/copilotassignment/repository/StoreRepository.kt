@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface StoreRepository : MongoRepository<Store, String> {
-    fun findByName(name: String): List<Store>
+    fun findByRestaurantBrand(restaurantBrand: String): List<Store>
     fun findByLocation(location: String): List<Store>
-    fun findByNameIn(names: List<String>): List<Store>
-    fun findByNameAndLocation(name: String, location: String): Store?
-    fun findByNameInAndLocationIn(names: List<String>, locations: List<String>): List<Store>
+    fun findByRestaurantBrandIn(restaurantBrands: List<String>): List<Store>
+    fun findByRestaurantBrandAndLocation(restaurantBrand: String, location: String): Store?
+    fun findByRestaurantBrandInAndLocationIn(restaurantBrands: List<String>, locations: List<String>): List<Store>
 }

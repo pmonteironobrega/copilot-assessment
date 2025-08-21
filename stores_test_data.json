@@ -1,183 +1,33 @@
 [
-  {
-    "name": "Loja A",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 1", "qty": 0 },
-      { "name": "Produto 2", "qty": 10 },
-      { "name": "Produto 3", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja B",
-    "location": "Zona Sul",
-    "products": [
-      { "name": "Produto 4", "qty": 5 },
-      { "name": "Produto 5", "qty": 0 },
-      { "name": "Produto 6", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja C",
-    "location": "Zona Norte",
-    "products": [
-      { "name": "Produto 7", "qty": 0 },
-      { "name": "Produto 8", "qty": 2 },
-      { "name": "Produto 9", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja D",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 10", "qty": 0 },
-      { "name": "Produto 11", "qty": 0 },
-      { "name": "Produto 12", "qty": 8 }
-    ]
-  },
-  {
-    "name": "Loja E",
-    "location": "Zona Oeste",
-    "products": [
-      { "name": "Produto 13", "qty": 0 },
-      { "name": "Produto 14", "qty": 0 },
-      { "name": "Produto 15", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja F",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 16", "qty": 1 },
-      { "name": "Produto 17", "qty": 0 },
-      { "name": "Produto 18", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja G",
-    "location": "Zona Sul",
-    "products": [
-      { "name": "Produto 19", "qty": 0 },
-      { "name": "Produto 20", "qty": 0 },
-      { "name": "Produto 21", "qty": 3 }
-    ]
-  },
-  {
-    "name": "Loja H",
-    "location": "Zona Norte",
-    "products": [
-      { "name": "Produto 22", "qty": 0 },
-      { "name": "Produto 23", "qty": 0 },
-      { "name": "Produto 24", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja I",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 25", "qty": 0 },
-      { "name": "Produto 26", "qty": 0 },
-      { "name": "Produto 27", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja J",
-    "location": "Zona Oeste",
-    "products": [
-      { "name": "Produto 28", "qty": 0 },
-      { "name": "Produto 29", "qty": 0 },
-      { "name": "Produto 30", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja K",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 31", "qty": 0 },
-      { "name": "Produto 32", "qty": 0 },
-      { "name": "Produto 33", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja L",
-    "location": "Zona Sul",
-    "products": [
-      { "name": "Produto 34", "qty": 0 },
-      { "name": "Produto 35", "qty": 0 },
-      { "name": "Produto 36", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja M",
-    "location": "Zona Norte",
-    "products": [
-      { "name": "Produto 37", "qty": 0 },
-      { "name": "Produto 38", "qty": 0 },
-      { "name": "Produto 39", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja N",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 40", "qty": 0 },
-      { "name": "Produto 41", "qty": 0 },
-      { "name": "Produto 42", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja O",
-    "location": "Zona Oeste",
-    "products": [
-      { "name": "Produto 43", "qty": 0 },
-      { "name": "Produto 44", "qty": 0 },
-      { "name": "Produto 45", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja P",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 46", "qty": 0 },
-      { "name": "Produto 47", "qty": 0 },
-      { "name": "Produto 48", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja Q",
-    "location": "Zona Sul",
-    "products": [
-      { "name": "Produto 49", "qty": 0 },
-      { "name": "Produto 50", "qty": 0 },
-      { "name": "Produto 51", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja R",
-    "location": "Zona Norte",
-    "products": [
-      { "name": "Produto 52", "qty": 0 },
-      { "name": "Produto 53", "qty": 0 },
-      { "name": "Produto 54", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja S",
-    "location": "Centro",
-    "products": [
-      { "name": "Produto 55", "qty": 0 },
-      { "name": "Produto 56", "qty": 0 },
-      { "name": "Produto 57", "qty": 0 }
-    ]
-  },
-  {
-    "name": "Loja T",
-    "location": "Zona Oeste",
-    "products": [
-      { "name": "Produto 58", "qty": 0 },
-      { "name": "Produto 59", "qty": 0 },
-      { "name": "Produto 60", "qty": 0 }
-    ]
-  }
+  { "restaurantBrand": "Restaurante A", "location": "Centro", "products": [ { "name": "Produto 1", "qty": 0 }, { "name": "Produto 2", "qty": 10 } ] },
+  { "restaurantBrand": "Restaurante B", "location": "Zona Sul", "products": [ { "name": "Produto 3", "qty": 0 }, { "name": "Produto 4", "qty": 5 } ] },
+  { "restaurantBrand": "Restaurante C", "location": "Zona Norte", "products": [ { "name": "Produto 5", "qty": 0 }, { "name": "Produto 6", "qty": 2 } ] },
+  { "restaurantBrand": "Restaurante D", "location": "Centro", "products": [ { "name": "Produto 7", "qty": 0 }, { "name": "Produto 8", "qty": 8 } ] },
+  { "restaurantBrand": "Restaurante E", "location": "Zona Oeste", "products": [ { "name": "Produto 9", "qty": 0 }, { "name": "Produto 10", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante F", "location": "Centro", "products": [ { "name": "Produto 11", "qty": 1 }, { "name": "Produto 12", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante G", "location": "Zona Sul", "products": [ { "name": "Produto 13", "qty": 0 }, { "name": "Produto 14", "qty": 3 } ] },
+  { "restaurantBrand": "Restaurante H", "location": "Zona Norte", "products": [ { "name": "Produto 15", "qty": 0 }, { "name": "Produto 16", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante I", "location": "Centro", "products": [ { "name": "Produto 17", "qty": 0 }, { "name": "Produto 18", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante J", "location": "Zona Oeste", "products": [ { "name": "Produto 19", "qty": 0 }, { "name": "Produto 20", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante K", "location": "Centro", "products": [ { "name": "Produto 21", "qty": 0 }, { "name": "Produto 22", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante L", "location": "Zona Sul", "products": [ { "name": "Produto 23", "qty": 0 }, { "name": "Produto 24", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante M", "location": "Zona Norte", "products": [ { "name": "Produto 25", "qty": 0 }, { "name": "Produto 26", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante N", "location": "Centro", "products": [ { "name": "Produto 27", "qty": 0 }, { "name": "Produto 28", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante O", "location": "Zona Oeste", "products": [ { "name": "Produto 29", "qty": 0 }, { "name": "Produto 30", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante P", "location": "Centro", "products": [ { "name": "Produto 31", "qty": 0 }, { "name": "Produto 32", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante Q", "location": "Zona Sul", "products": [ { "name": "Produto 33", "qty": 0 }, { "name": "Produto 34", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante R", "location": "Zona Norte", "products": [ { "name": "Produto 35", "qty": 0 }, { "name": "Produto 36", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante S", "location": "Centro", "products": [ { "name": "Produto 37", "qty": 0 }, { "name": "Produto 38", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante T", "location": "Zona Oeste", "products": [ { "name": "Produto 39", "qty": 0 }, { "name": "Produto 40", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante U", "location": "Centro", "products": [ { "name": "Produto 41", "qty": 0 }, { "name": "Produto 42", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante V", "location": "Zona Sul", "products": [ { "name": "Produto 43", "qty": 0 }, { "name": "Produto 44", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante W", "location": "Zona Norte", "products": [ { "name": "Produto 45", "qty": 0 }, { "name": "Produto 46", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante X", "location": "Centro", "products": [ { "name": "Produto 47", "qty": 0 }, { "name": "Produto 48", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante Y", "location": "Zona Oeste", "products": [ { "name": "Produto 49", "qty": 0 }, { "name": "Produto 50", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante Z", "location": "Centro", "products": [ { "name": "Produto 51", "qty": 0 }, { "name": "Produto 52", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante AA", "location": "Zona Sul", "products": [ { "name": "Produto 53", "qty": 0 }, { "name": "Produto 54", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante AB", "location": "Zona Norte", "products": [ { "name": "Produto 55", "qty": 0 }, { "name": "Produto 56", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante AC", "location": "Centro", "products": [ { "name": "Produto 57", "qty": 0 }, { "name": "Produto 58", "qty": 0 } ] },
+  { "restaurantBrand": "Restaurante AD", "location": "Zona Oeste", "products": [ { "name": "Produto 59", "qty": 0 }, { "name": "Produto 60", "qty": 0 } ] }
 ]
 
