@@ -1,5 +1,6 @@
 package com.pmonteironobrega.copilotassignment.service
 
+import com.pmonteironobrega.copilotassignment.controller.StoreErrorMessage
 import com.pmonteironobrega.copilotassignment.model.Product
 import com.pmonteironobrega.copilotassignment.model.Store
 import com.pmonteironobrega.copilotassignment.repository.StoreRepository
@@ -9,79 +10,40 @@ import org.springframework.stereotype.Service
 class StoreService(private val storeRepository: StoreRepository) {
     fun saveStore(store: Store): Store = storeRepository.save(store)
 
-    fun getUnavailableProductsByStore(restaurantBrand: String?, location: String?): List<Product> {
-        if ((restaurantBrand == null || restaurantBrand.isBlank()) && (location == null || location.isBlank())) {
-            return getAllUnavailableProducts().values.flatten()
-        }
-        if (restaurantBrand != null && restaurantBrand.isBlank()) {
-            throw IllegalArgumentException("O parâmetro restaurantBrand não pode ser vazio.")
-        }
-        if (location != null && location.isBlank()) {
-            throw IllegalArgumentException("O parâmetro location não pode ser vazio.")
-        }
+    fun getUnavailableProductsByStore(restaurantBrand: String?, location: String?): Map<String, List<Product>> {
+        val brand = restaurantBrand?.takeIf { it.isNotBlank() }
+        val loc = location?.takeIf { it.isNotBlank() }
+        if (restaurantBrand != null && restaurantBrand.isBlank()) throw IllegalArgumentException(StoreErrorMessage.INVALID_BRAND.message)
+        if (location != null && location.isBlank()) throw IllegalArgumentException(StoreErrorMessage.INVALID_LOCATION.message)
+
         val stores = when {
-            restaurantBrand != null && location != null -> {
-                val store = storeRepository.findByRestaurantBrandAndLocation(restaurantBrand, location)
-                if (store == null) throw NoSuchElementException("Store não encontrada para os parâmetros informados.")
-                listOf(store)
+            brand == null && loc == null -> storeRepository.findAll()
+            brand != null && loc != null -> {
+                storeRepository.findByRestaurantBrandAndLocation(brand, loc)?.let { listOf(it) } ?: emptyList()
             }
-            restaurantBrand != null -> {
-                val found = storeRepository.findByRestaurantBrand(restaurantBrand)
-                if (found.isEmpty()) throw NoSuchElementException("Nenhuma store encontrada para a marca informada.")
-                found
-            }
-            location != null -> {
-                val found = storeRepository.findByLocation(location)
-                if (found.isEmpty()) throw NoSuchElementException("Nenhuma store encontrada para a localização informada.")
-                found
-            }
+            brand != null -> storeRepository.findByRestaurantBrand(brand)
+            loc != null -> storeRepository.findByLocation(loc)
             else -> emptyList()
         }
-        return stores.flatMap { it.products.filter { p -> p.qty == 0 } }
+        if (stores.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        val products = stores.flatMap { it.products.filter { p -> p.qty == 0 } }
+        if (products.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        return mapOf("results" to products)
     }
 
     fun getUnavailableProductsByStores(requests: List<StoreQueryRequest>): Map<String, List<Product>> {
-        if (requests.isEmpty()) throw IllegalArgumentException("A lista de stores não pode ser vazia.")
-        val result = mutableMapOf<String, List<Product>>()
+        if (requests.isEmpty()) throw IllegalArgumentException(StoreErrorMessage.EMPTY_REQUEST.message)
+        val allProducts = mutableListOf<Product>()
         requests.forEach { req ->
             val products = try {
-                storeQueryFlexible(req.restaurantBrand, req.location)
+                getUnavailableProductsByStore(req.restaurantBrand, req.location)["results"] as List<Product>
             } catch (ex: NoSuchElementException) {
-                // Adiciona erro específico para cada store não encontrada
-                result[listOfNotNull(req.restaurantBrand, req.location).joinToString(" - ")] = listOf()
-                return@forEach
+                emptyList<Product>()
             }
-            val key = listOfNotNull(req.restaurantBrand, req.location).joinToString(" - ")
-            result[key] = products
+            allProducts.addAll(products)
         }
-        return result
-    }
-
-    private fun storeQueryFlexible(restaurantBrand: String?, location: String?): List<Product> {
-        if (restaurantBrand != null && restaurantBrand.isBlank()) {
-            throw IllegalArgumentException("O parâmetro restaurantBrand não pode ser vazio.")
-        }
-        if (location != null && location.isBlank()) {
-            throw IllegalArgumentException("O parâmetro location não pode ser vazio.")
-        }
-        return when {
-            restaurantBrand != null && location != null -> {
-                val store = storeRepository.findByRestaurantBrandAndLocation(restaurantBrand, location)
-                if (store == null) throw NoSuchElementException("Store não encontrada para os parâmetros informados.")
-                store.products.filter { it.qty == 0 }
-            }
-            restaurantBrand != null -> {
-                val stores = storeRepository.findByRestaurantBrand(restaurantBrand)
-                if (stores.isEmpty()) throw NoSuchElementException("Nenhuma store encontrada para a marca informada.")
-                stores.flatMap { it.products.filter { p -> p.qty == 0 } }
-            }
-            location != null -> {
-                val stores = storeRepository.findByLocation(location)
-                if (stores.isEmpty()) throw NoSuchElementException("Nenhuma store encontrada para a localização informada.")
-                stores.flatMap { it.products.filter { p -> p.qty == 0 } }
-            }
-            else -> getAllUnavailableProducts().values.flatten()
-        }
+        if (allProducts.isEmpty()) throw NoSuchElementException(StoreErrorMessage.NO_STORE_FOUND.message)
+        return mapOf("results" to allProducts)
     }
 
     fun getAllUnavailableProducts(): Map<String, List<Product>> {
