@@ -1,0 +1,38 @@
+# Gradle
+/build/
+/.gradle/
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Kotlin
+*.class
+*.jar
+*.war
+*.ear
+
+# VSCode
+.vscode/
+
+# Outros
+*.log
+*.tmp
+*.swp
+
+# Testes e relatórios
+/test-results/
+/reports/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+/tmp/
+
+# Configuração do wrapper do Gradle
+/gradle/wrapper/gradle-wrapper.jar
+
