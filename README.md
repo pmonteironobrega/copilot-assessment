@@ -4,6 +4,7 @@
 O projeto solicitou a criação de uma API de consulta em massa para prover 
 informações a um aplicativo. 
 Esta API deve retornar os produtos indisponiveis em uma loja - ou lista de lojas.
+Todo o desenvolvimento deve ser feito a partir da escrita de prompts utilizando o github copilot
 
 1. **Endpoint da API** O backend deverá fornecer um endpoint de API para que o sistema RAP possa solicitar informações sobre itens indisponíveis em locais específicos.
 2. **Parâmetros de Entrada** ==O endpoint deverá aceitar os seguintes parâmetros na requisição:==
@@ -20,3 +21,7 @@ Esta API deve retornar os produtos indisponiveis em uma loja - ou lista de lojas
 >Em caso de sucesso: A resposta conterá uma lista de itens indisponíveis.
  
 >Em caso de erro: A resposta conterá uma mensagem de erro apropriada que descreva o problema ocorrido durante a recuperação dos dados.
+
+<h2>Construção do prompt</h2>
+
+OS prompts foram construídos no modo agent utilizando o modelo GPT-4.1
